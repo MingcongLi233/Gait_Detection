@@ -1,16 +1,44 @@
-function [windowedData, labels] = extractData(matFileContent, fileName, samplingRateHZ, windowWidthSeconds)
+function [windowedData, labels] = extractData(matFileContent, filename, samplingRateHZ, windowWidthSeconds)
 
 % matFileContent: contents of a MAT file as obtained by matFileContent=load(filename)
 % filename: the name of the file including extension (e.g. Group1_Walk7_N.mat, without path)
 % samplingRateHz: sampling rate in Hz
 % windowWidthSeconds: window width in seconds
+%***********************parameters***************************
+minimun_length = 50*3.4;
+
+
+
 if exist(filename,"file")==0
-    fprintf("the data file does not exist. Please check the name of the file")
+    error("the data file does not exist. Please check the name of the file");
 else
-    fprintf("*******loading data******")
+    fprintf("*******loading data******");
     
     % continues to check the name of File
-    if contains()
+    if contains(filename,'_N.mat')| contains(filename,'_S.mat')==0
+        error("the file dose not have N or S to show the style of walk ");
+    else % check the data structurw
+        if isfield(matFileContent,"data")& isfield(matFileContent,"time")==0
+            error("the file dose not correct data structure ");
+        else % check the form of data
+            if size(matFileContent.data,1)~=3
+                error("the form of .data is wrong");
+            else % check the form of time
+                if size(matFileContent.time,1)~=1
+                    error("the form of .time is wrong");
+                else
+                    if size(matFileContent.data,2)<minimun_length
+                        error("the length does not meet the requirement");
+                    else
+                        if length(matFileContent.data)
+                end
+            end
+        end
+    end
+    
+            
+        
+        
 
 
 
