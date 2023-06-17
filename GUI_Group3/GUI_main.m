@@ -13,6 +13,8 @@ classdef GUI_main < handle
     methods (Access = public)
         function obj = GUI_main(); %initial
         obj.createLayout();
+        obj.GUI_dataset = GUI_dataset();
         end
+
 
         end
