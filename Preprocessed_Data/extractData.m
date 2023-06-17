@@ -16,7 +16,7 @@ else
     fprintf("*******loading data******.\n");
     
     % continues to check the name of File
-    if contains(filename,'_N.mat')| contains(filename,'_S.mat')==0
+    if contains(filename,'_N.mat')==0 & contains(filename,'_S.mat')==0
         error("the file dose not have N or S to show the style of walk ");
     else % check the data structurw
         if isfield(matFileContent,"data")& isfield(matFileContent,"time")==0
