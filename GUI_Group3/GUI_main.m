@@ -3,7 +3,7 @@ classdef GUI_main < handle
     properties (Access = public)
         TimeVector
         DataMatrix
-        filename 
+        fileName 
         Gui_fig
         hp0
         hp1
@@ -119,9 +119,10 @@ classdef GUI_main < handle
 
             function importData(obj,~,~)
             obj.fileName = uigetfile('.mat');
-            obj.matFileContent = load(fileName);
+            obj.matFileContent = load(obj.fileName);
             obj.TimeVector = obj.matFileContent.time;
             obj.DataMatrix = obj.matFileContent.data;
+            obj.Table.Data = [obj.TimeVector;obj.DataMatrix]';
             end
 
             function modelImport(obj,~,~)
