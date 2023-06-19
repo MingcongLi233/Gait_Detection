@@ -56,7 +56,7 @@ classdef GUI_main < handle
                     'BackgroundColor','#0072BD',...
                     'parent', obj.hp1,...);
 
-                %obj.ImportButton = uicontrol('Style', 'pushbutton','String', 'Import one walk', 'Units', 'normalized','Position', [0.15 0.05 0.15 0.9],'parent', obj.hp0);
+                %obj.DataImportButton = uicontrol('Style', 'pushbutton','String', 'Import one walkdata', 'Units', 'normalized','Position', [0.15 0.05 0.15 0.9],'parent', obj.hp0, 'Callback',@obj.importData);
                
                 % classify button
                 obj.ClassifyButton = uicontrol('Style', 'pushbutton',...
