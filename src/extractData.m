@@ -6,7 +6,8 @@ function [windowedData, labels] = extractData(matFileContent, filename, sampling
 % windowWidthSeconds: window width in seconds
 %***********************parameters***************************
 minimun_length = 50*3.4;
-addpath("Preprocessed_Data");
+addpath("TrainingData");
+addpath("TestData");
 
 
 % check the data
