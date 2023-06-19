@@ -11,7 +11,7 @@ classdef GUI_main < handle
         hp3
         Table 
         Axis 
-        ImportButton
+        DataImportButton
         ModelImportButton
         ClassifyButton
         ConfusionMatrix
@@ -43,7 +43,7 @@ classdef GUI_main < handle
                     'Position', [0.05 0.05 0.2 0.95],...
                     'ColumnEditable', true,...
                     'ColumnName',{'Time [s]';'X [m/s^2]';'Y [m/s^2]';'Z [m/s^2]'},...
-                    'parent', obj.hp0);
+                    'parent', obj.hp0,'Callback',@obj.TableEdit);
                  %Add figure axes
                  obj.Axis = uiaxes('Units', 'normalized',...
                     'Position', [0.27 0.05 0.5 0.95],...
@@ -71,7 +71,7 @@ classdef GUI_main < handle
               % choosed model
                 obj.hp2 = uipanel('Position', [0.78 0.05 0.2 0.35],'Units','normalized',...
                     'Title', 'Choosed model',...
-                    'Parent', obj.hp0,'Visible','on');
+                    'Parent', obj.hp0,'Visible','off');
 
 
 
@@ -98,5 +98,14 @@ classdef GUI_main < handle
                     'Parent',obj.hp3,'Visible','on');
             end
 
+            function modelImport(obj,~,~)
+            model_filename = uigetfile('*.mat');
+            obj.Trained_model = load(model_filename); %加载模型变量
+            msgbox("The trained Model has been loaded!")
+            obj.hp2.Visible = 'On';  % 此时再打开hp2的显示
+            end   
 
+            function TableEdit(obj, ~, ~)
+            obj.GUI_dataset.DataMatrix = obj.Table.Data; %只要修改了table里的数据后，原本的数据就会跟着改变
+        end
         end
