@@ -25,6 +25,7 @@ classdef GUI_main < handle
         labels
         windowedData
         YPred
+        accuracy 
     end
 
         properties (Access = public, SetObservable, AbortSet)
@@ -217,11 +218,11 @@ end
 
 
 %import classifyWalk
-function YPred = classifyWalk(model, XTest)
+function  classifyWalk(obj,~,~)
 % This is a trivial example for a classifier. It classifies any input as a
 % normal walk.
     obj.YPred = categorical(repmat({'Normal walk'}, size(XTest)));
-    predictions = predict(model, XTest);
+    predictions = predict(obj.model, XTest);
     for i=1:size(predictions,1)
         if predictions(i,1)<0.5
             obj.YPred(i)='Silly walk'; 
@@ -229,6 +230,18 @@ function YPred = classifyWalk(model, XTest)
             obj.YPred(i)='Normal walk';
         end   
     end
+
+
+
+
+% import 
+function evaluate(obj,~,~)
+% compute the accuracy of the model
+iscorrect = obj.YPred == obj.YTest;
+obj.accuracy = sum(iscorrect)/numel(iscorrect);
+% plot confusion chart
+confusionchart(obj.YTest,obj.YPred,'Parent',obj.ConfusionMatrix)
+
 
 
 
