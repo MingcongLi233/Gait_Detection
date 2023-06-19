@@ -1,7 +1,7 @@
 function [windowedData, labels] = extractData(matFileContent, filename, samplingRateHZ, windowWidthSeconds)
 
 % matFileContent: contents of a MAT file as obtained by matFileContent=load(filename)
-% filename: the name of the file including extension (e.g. Group1_Walk7_N.mat, without path)
+% filename: the name of the file including extension (e.g. "Group1_Walk7_N.mat", without path)
 % samplingRateHz: sampling rate in Hz
 % windowWidthSeconds: window width in seconds
 %***********************parameters***************************
@@ -75,7 +75,7 @@ windowedData = data_cell;
 %get the label
 labels_structure = ones(data_number,1);
 if contains(filename,'_N.mat')
-   labels = categorical(labels_structure,1,"Normal walk");
+    labels = categorical(labels_structure,1,"Normal walk");
 else
     labels = categorical(labels_structure,1,"Silly walk");
 end
