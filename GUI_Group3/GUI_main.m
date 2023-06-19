@@ -24,7 +24,7 @@ classdef GUI_main < handle
         YTest
         labels
         windowedData
-        
+        YPred
     end
 
         properties (Access = public, SetObservable, AbortSet)
@@ -111,6 +111,8 @@ classdef GUI_main < handle
             function importData(obj)
             obj.fileName = uigetfile('.mat');
             obj.matFileContent = load(fileName);
+            obj.TimeVector = obj.matFileContent.time;
+            obj.DataMatrix = obj.matFileContent.data;
             end
 
             function modelImport(obj,~,~)
@@ -126,9 +128,6 @@ classdef GUI_main < handle
             function TableEdit(obj, ~, ~)
             obj.GUI_dataset.DataMatrix = obj.Table.Data; %只要修改了table里的数据后，原本的数据就会跟着改变
         end
-
-
-
 
  
           % function of extracting data
@@ -159,13 +158,13 @@ else
             if size(obj.matFileContent.data,1)~=3
                 error("the form of .data is wrong");
             else % check the form of time
-                if size(matFileContent.time,1)~=1
+                if size(obj.matFileContent.time,1)~=1
                     error("the form of .time is wrong");
                 else
-                    if size(matFileContent.data,2)<minimun_length
+                    if size(obj.matFileContent.data,2)<minimun_length
                         error("the length does not meet the requirement");
                     else
-                        if length(matFileContent.data)~= length(matFileContent.time)
+                        if length(obj.matFileContent.data)~= length(obj.matFileContent.time)
                             error("the length of time and the length of data is not equ");
                         else
                             fprintf("the walking data meets the requirement!")
@@ -177,21 +176,21 @@ else
     end
 end
 
-if samplingRateHZ <=0
+if obj.samplingRateHZ <=0
     error("the Sampling Rate is wrong");
 else
-    interval = 1/samplingRateHZ;
+    interval = 1/obj.samplingRateHZ;
 end
 
-extracted_data_time = matFileContent.time(1):interval:matFileContent.time(end);
+extracted_data_time = obj.matFileContent.time(1):interval:objmatFileContent.time(end);
 % adapt to new Hz
-Extracted_data_X = interp1(matFileContent.time,matFileContent.data(1,:),extracted_data_time);
-Extracted_data_Y = interp1(matFileContent.time,matFileContent.data(2,:),extracted_data_time);
-Extracted_data_Z = interp1(matFileContent.time,matFileContent.data(3,:),extracted_data_time);
+Extracted_data_X = interp1(obj.matFileContent.time,obj.matFileContent.data(1,:),extracted_data_time);
+Extracted_data_Y = interp1(obj.matFileContent.time,obj.matFileContent.data(2,:),extracted_data_time);
+Extracted_data_Z = interp1(obj.matFileContent.time,obj.matFileContent.data(3,:),extracted_data_time);
 Extracted_whole_data=[Extracted_data_X;Extracted_data_Y;Extracted_data_Z];
 
 % How many points do we need
-point_number=windowWidthSeconds*samplingRateHZ;
+point_number=obj.windowWidthSeconds*obj.samplingRateHZ;
 point_number_half = floor(point_number/2);
 total_point = numel(extracted_data_time);
 data_number = floor((total_point-point_number)/point_number_half)+1;
@@ -204,17 +203,35 @@ for i=1:data_number
     data_cell(i) = {Extracted_whole_data(:,start_time:end_time)};
 end
 
-windowedData = data_cell;
+obj.windowedData = data_cell;
 
 %get the label
 labels_structure = ones(data_number,1);
 if contains(filename,'_N.mat')
-   labels = categorical(labels_structure,1,"Normal walk");
+   obj.labels = categorical(labels_structure,1,"Normal walk");
 else
-    labels = categorical(labels_structure,1,"Silly walk");
+    obj.labels = categorical(labels_structure,1,"Silly walk");
+end
 end
 
-end
+
+
+%import classifyWalk
+function YPred = classifyWalk(model, XTest)
+% This is a trivial example for a classifier. It classifies any input as a
+% normal walk.
+    obj.YPred = categorical(repmat({'Normal walk'}, size(XTest)));
+    predictions = predict(model, XTest);
+    for i=1:size(predictions,1)
+        if predictions(i,1)<0.5
+            obj.YPred(i)='Silly walk'; 
+        else
+            obj.YPred(i)='Normal walk';
+        end   
+    end
+
+
+
 
             
 
