@@ -1,4 +1,4 @@
-function model = trainSillyWalkClassifier(XTrain, YTrain)   
+function model = trainSillyWalkClassifier(XTrain, YTrain)
     % Define the network architecture
     inputDimension = 3;
     hiddenUnits = 100;
