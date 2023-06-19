@@ -30,15 +30,10 @@ classdef GUI_main < handle
 
     end
 
-        properties (Access = public, SetObservable, AbortSet)
-        GUI_dataset
-        end   
-
 
     methods (Access = public)
         function obj = GUI_main(); %initial
         obj.createLayout();
-        obj.GUI_dataset = GUI_dataset();
         end
 
 
@@ -54,7 +49,7 @@ classdef GUI_main < handle
                     'Position', [0.05 0.05 0.2 0.95],...
                     'ColumnEditable', true,...
                     'ColumnName',{'Time [s]';'X [m/s^2]';'Y [m/s^2]';'Z [m/s^2]'},...
-                    'parent', obj.hp0,'Callback',@obj.TableEdit);
+                    'parent', obj.hp0);
                  %Add figure axes
                  obj.Axis = uiaxes('Units', 'normalized',...
                     'Position', [0.27 0.05 0.5 0.95],...
@@ -67,7 +62,7 @@ classdef GUI_main < handle
                     'BackgroundColor','#0072BD',...
                     'parent', obj.hp1,'Callback',@obj.modelImport);
 
-                obj.DataImportButton = uicontrol('Style', 'pushbutton','String', 'Import one walkdata', 'Units', 'normalized','Position', [0.15 0.05 0.15 0.9],'parent', obj.hp0, 'Callback',@obj.importData);
+                obj.DataImportButton = uicontrol('Style', 'pushbutton','String', 'Import one walkdata', 'Units', 'normalized','Position', [0.3 0.8 0.2 0.2],'parent', obj.hp1, 'Callback',@obj.importData);
                
 
                 % classify button
@@ -122,7 +117,7 @@ classdef GUI_main < handle
 
 
 
-            function importData(obj)
+            function importData(obj,~,~)
             obj.fileName = uigetfile('.mat');
             obj.matFileContent = load(fileName);
             obj.TimeVector = obj.matFileContent.time;
@@ -137,11 +132,6 @@ classdef GUI_main < handle
             end   
 
 
-
-            % Import data to Table
-            function TableEdit(obj, ~, ~)
-            obj.GUI_dataset.DataMatrix = obj.Table.Data; %只要修改了table里的数据后，原本的数据就会跟着改变
-        end
 
  
           % function of extracting data
@@ -218,7 +208,6 @@ for i=1:data_number
 end
 
 obj.windowedData = data_cell;
-
 %get the label
 labels_structure = ones(data_number,1);
 if contains(filename,'_N.mat')
@@ -243,6 +232,7 @@ function  classifyWalk(obj,~,~)
             obj.YPred(i)='Normal walk';
         end   
     end
+end
 
 
 
@@ -274,13 +264,16 @@ end
        
             % use imported model to classify
             function classification(obj, ~, ~) 
-                tic    %这里差一个引入test集合
-                obj.extractData()
+                tic    
+                obj.extractData() %这里引入test集合
                 obj.classifyWalk()
                 obj.classification_runtime = toc;
                 obj.evaluate()
                 end
            
+
+
+        end
 
 
         end
