@@ -14,6 +14,7 @@ classdef GUI_main < handle
         DataImportButton
         ModelImportButton
         ClassifyButton
+        ClearButton
         ConfusionMatrix
         textresult
         sillynormal
@@ -26,6 +27,7 @@ classdef GUI_main < handle
         windowedData
         YPred
         accuracy 
+
     end
 
         properties (Access = public, SetObservable, AbortSet)
@@ -65,8 +67,9 @@ classdef GUI_main < handle
                     'BackgroundColor','#0072BD',...
                     'parent', obj.hp1,'Callback',@obj.modelImport);
 
-                %obj.DataImportButton = uicontrol('Style', 'pushbutton','String', 'Import one walkdata', 'Units', 'normalized','Position', [0.15 0.05 0.15 0.9],'parent', obj.hp0, 'Callback',@obj.importData);
+                obj.DataImportButton = uicontrol('Style', 'pushbutton','String', 'Import one walkdata', 'Units', 'normalized','Position', [0.15 0.05 0.15 0.9],'parent', obj.hp0, 'Callback',@obj.importData);
                
+
                 % classify button
                 obj.ClassifyButton = uicontrol('Style', 'pushbutton',...
                     'String', 'Classify',...
@@ -76,6 +79,16 @@ classdef GUI_main < handle
                     'FontWeight','bold',... 
                     'ForeGroundColor','#FFFFFF',...
                     'BackgroundColor','#0072BD', 'Callback',@obj.classification);
+               
+
+                %clear button
+                obj.ClearButton  = uicontrol('Style', 'pushbutton',...
+                    'String', 'Reset',...
+                    'Units', 'normalized',...
+                    'Position', [0.05 0.05 0.2 0.2],...
+                    'parent', obj.hp1,...
+                    'Callback',@obj.clear_data);
+
 
               % choosed model
                 obj.hp2 = uipanel('Position', [0.78 0.05 0.2 0.35],'Units','normalized',...
@@ -241,19 +254,27 @@ iscorrect = obj.YPred == obj.YTest;
 obj.accuracy = sum(iscorrect)/numel(iscorrect);
 % plot confusion chart
 confusionchart(obj.YTest,obj.YPred,'Parent',obj.ConfusionMatrix)
+if mode(obj.YPred) == 'Silly walk'
+rgbImage = imread("silly.jpg");
+imshow(rgbImage,obj.sillynormal)
+else
+rgbImage = imread("normal.jpg");
+imshow(rgbImage,obj.sillynormal)
+end
 
 
 
+% Introduce reset function
+        function clear_data(obj, ~, ~)
+              clear
+              GUI_main()     
+        end
 
-
-            
 
        
             % use imported model to classify
             function classification(obj, ~, ~) 
-                tic
-                obj.XTest={};
-                obj.YTest={};
+                tic    %这里差一个引入test集合
                 obj.extractData()
                 obj.classifyWalk()
                 obj.classification_runtime = toc;
