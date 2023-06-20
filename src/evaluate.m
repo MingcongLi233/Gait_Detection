@@ -6,4 +6,4 @@ iscorrect = YPred == YTest;
 accuracy = sum(iscorrect)/numel(iscorrect);
 
 % plot confusion chart
-confusionchart(YTest,YPred)
+confusionchart(YPred,YTest)
