@@ -169,29 +169,27 @@ end
 
 
 
-% import 
 function evaluate(obj,~,~)
 % compute the accuracy of the model
-iscorrect = obj.YPred == obj.YTest;
-obj.accuracy = sum(iscorrect)/numel(iscorrect);
-% plot confusion chart
-confusionchart(obj.YTest,obj.YPred,'Parent',obj.ConfusionMatrix)
+iscorrect = obj.YPred == obj.labels;
+obj.accuracy = sum(iscorrect)/numel(iscorrect)*100;
 if mode(obj.YPred) == 'Silly walk'
-rgbImage = imread("silly.jpg");
-imshow(rgbImage,obj.sillynormal)
+imshow("silly2.jpg",'Parent',obj.sillynormal);
+obj.textresult.String = 'Based on our experimental results, your gait is considered as silly, and we recommend reducing the amplitude of body sway.'
+%obj.textresult2.String = 'The Time of classification is'+ num2str(obj.classification_runtime) + ' and the accuracy is' + num2str(obj.accuracy)
+obj.textresult2.String="The accuracy is: "+num2str(obj.accuracy) + "%! The Time of classification is: " +num2str(obj.classification_runtime) + "s";
 else
-rgbImage = imread("normal.jpg");
-imshow(rgbImage,obj.sillynormal)
+    
+imshow("normal.jpg",'Parent',obj.sillynormal);
+obj.textresult.String ='Congratulations! Based on our experimental results, your gait is considered normal. Please continue to maintain it!'
+obj.textresult2.String="The accuracy is: "+num2str(obj.accuracy) + "%! The Time of classification is: " +num2str(obj.classification_runtime) + "s";
+end
 end
 
-
-
-% Introduce reset function
-        function clear_data(obj, ~, ~)
-              clear
-              GUI_main()     
-        end
-
+function secondData(obj,~,~)
+            clear
+            GUI_main();
+    end
 
        
             % use imported model to classify
