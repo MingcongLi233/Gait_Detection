@@ -76,20 +76,26 @@ classdef GUI_main < handle
 
 
 
+            
             function importData(obj,~,~)
             obj.fileName = uigetfile('.mat');
             obj.matFileContent = load(obj.fileName);
             obj.TimeVector = obj.matFileContent.time;
             obj.DataMatrix = obj.matFileContent.data;
-            obj.Table.Data = [obj.TimeVector;obj.DataMatrix]';
+            plot(obj.matFileContent.time, obj.matFileContent.data(1,:),'g','Parent',obj.Axisplot);
+            
+            hold on
+            plot(obj.matFileContent.time, obj.matFileContent.data(2,:),'r','Parent',obj.Axisplot);
+          
+            hold on 
+            plot(obj.matFileContent.time, obj.matFileContent.data(3,:),'b','Parent',obj.Axisplot);
+            legend(obj.Axisplot,'X','Y','Z')
+            hold off
+            grid(obj.Axisplot,'on');
+            %legend(obj.Axisplot,'Location','northwest');
+            xlabel(obj.Axisplot,'Time [s]');
+            ylabel(obj.Axisplot,'Acceleration [m/s^2]');
             end
-
-            function modelImport(obj,~,~)
-            model_filename = uigetfile('*.mat');
-            obj.Trained_model = load(model_filename); %加载模型变量
-            msgbox("The trained Model has been loaded!")
-            obj.hp2.Visible = 'On';  % 此时再打开hp2的显示
-            end   
 
 
 
