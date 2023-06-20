@@ -34,7 +34,7 @@ else
                         if length(matFileContent.data)~= length(matFileContent.time)
                             error("the length of time and the length of data is not equ");
                         else
-                            fprintf("the walking data meets the requirement!")
+                            fprintf("the walking data meets the requirement!");
                         end
                     end
                 end

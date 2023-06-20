@@ -1,4 +1,4 @@
-function [windowedData, labels] = extractData(matFileContent, filename, samplingRateHZ, windowWidthSeconds)
+unction [windowedData, labels] = extractData(matFileContent, filename, samplingRateHZ, windowWidthSeconds)
 
 % matFileContent: contents of a MAT file as obtained by matFileContent=load(filename)
 % filename: the name of the file including extension (e.g. Group1_Walk7_N.mat, without path)
