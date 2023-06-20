@@ -53,7 +53,7 @@ for i = 1:numel(fileList)
     YTest = [YTest; YTest_i];
 end
 %% Train the model
-model = trainSillyWalkClassifier(XTrain, YTrain)
+model = trainSillyWalkClassifier(XTrain, YTrain);
 %% Evaluate the model on test data
-YPred = classifyWalk(model, XTest)
+YPred = classifyWalk(model, XTest);
 accuracy = evaluate(YPred,YTest)

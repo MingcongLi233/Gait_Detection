@@ -12,8 +12,8 @@ addpath("TestData");
 % check the data
 if exist(filename,"file")==0
     error("the data file does not exist. Please check the name of the file.\n");
-else
-    fprintf("*******loading data******.\n");
+% else
+%     fprintf("*******loading data******.\n");
     
     % continues to check the name of File
     if contains(filename,'_N.mat')==0 & contains(filename,'_S.mat')==0
@@ -33,8 +33,8 @@ else
                     else
                         if length(matFileContent.data)~= length(matFileContent.time)
                             error("the length of time and the length of data is not equ");
-                        else
-                            fprintf("the walking data meets the requirement!");
+%                         else
+%                             fprintf("the walking data meets the requirement!");
                         end
                     end
                 end
