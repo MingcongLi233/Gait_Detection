@@ -100,8 +100,8 @@ classdef GUI_main < handle
 
 
  
-          % function of extracting data
-            function extractData(obj,~,~)
+           % function of extracting data
+ function extractData(obj,~,~)
 
 % matFileContent: contents of a MAT file as obtained by matFileContent=load(filename)
 % filename: the name of the file including extension (e.g. Group1_Walk7_N.mat, without path)
@@ -109,42 +109,8 @@ classdef GUI_main < handle
 % windowWidthSeconds: window width in seconds
 %***********************parameters***************************
 minimun_length = 50*3.4;
-addpath("Preprocessed_Data");
-
-
-% check the data
-if exist(obj.filename,"file")==0
-    error("the data file does not exist. Please check the name of the file.\n");
-else
-    fprintf("*******loading data******.\n");
-    
-    % continues to check the name of File
-    if contains(obj.filename,'_N.mat')| contains(obj.filename,'_S.mat')==0
-        error("the file dose not have N or S to show the style of walk ");
-    else % check the data structurw
-        if isfield(obj.matFileContent,"data")& isfield(obj.matFileContent,"time")==0
-            error("the file dose not correct data structure ");
-        else % check the form of data
-            if size(obj.matFileContent.data,1)~=3
-                error("the form of .data is wrong");
-            else % check the form of time
-                if size(obj.matFileContent.time,1)~=1
-                    error("the form of .time is wrong");
-                else
-                    if size(obj.matFileContent.data,2)<minimun_length
-                        error("the length does not meet the requirement");
-                    else
-                        if length(obj.matFileContent.data)~= length(obj.matFileContent.time)
-                            error("the length of time and the length of data is not equ");
-                        else
-                            fprintf("the walking data meets the requirement!")
-                        end
-                    end
-                end
-            end
-        end
-    end
-end
+addpath("TrainingData");
+addpath("TestData");
 
 if obj.samplingRateHZ <=0
     error("the Sampling Rate is wrong");
@@ -152,7 +118,7 @@ else
     interval = 1/obj.samplingRateHZ;
 end
 
-extracted_data_time = obj.matFileContent.time(1):interval:objmatFileContent.time(end);
+extracted_data_time = obj.matFileContent.time(1):interval:obj.matFileContent.time(end);
 % adapt to new Hz
 Extracted_data_X = interp1(obj.matFileContent.time,obj.matFileContent.data(1,:),extracted_data_time);
 Extracted_data_Y = interp1(obj.matFileContent.time,obj.matFileContent.data(2,:),extracted_data_time);
@@ -176,23 +142,23 @@ end
 obj.windowedData = data_cell;
 %get the label
 labels_structure = ones(data_number,1);
-if contains(filename,'_N.mat')
+if contains(obj.fileName,'_N.mat')
    obj.labels = categorical(labels_structure,1,"Normal walk");
 else
     obj.labels = categorical(labels_structure,1,"Silly walk");
 end
-end
 
+end
 
 
 %import classifyWalk
 function  classifyWalk(obj,~,~)
 % This is a trivial example for a classifier. It classifies any input as a
 % normal walk.
-    obj.YPred = categorical(repmat({'Normal walk'}, size(XTest)));
-    predictions = predict(obj.model, XTest);
+    obj.YPred = categorical(repmat({'Normal walk'}, size(obj.windowedData)));
+    predictions = predict(obj.Trained_model, obj.windowedData);
     for i=1:size(predictions,1)
-        if predictions(i,1)<0.5
+        if predictions(i,1)>0.5
             obj.YPred(i)='Silly walk'; 
         else
             obj.YPred(i)='Normal walk';
