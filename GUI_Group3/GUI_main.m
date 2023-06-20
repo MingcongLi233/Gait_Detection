@@ -25,6 +25,14 @@ classdef GUI_main < handle
     methods (Access = public)
         function obj = GUI_main(); %initial
         obj.createLayout();
+        obj.importData();
+        model = load('Model.mat');
+        obj.Trained_model = model.model;
+                  tic    
+                obj.extractData() %这里引入test集合
+                obj.classifyWalk()
+                obj.classification_runtime = toc;
+                obj.evaluate()
         end
 
 
@@ -191,19 +199,6 @@ function secondData(obj,~,~)
             GUI_main();
     end
 
-       
-            % use imported model to classify
-            function classification(obj, ~, ~) 
-                tic    
-                obj.extractData() %这里引入test集合
-                obj.classifyWalk()
-                obj.classification_runtime = toc;
-                obj.evaluate()
-                end
-           
-
-
-        end
 
 
     end
