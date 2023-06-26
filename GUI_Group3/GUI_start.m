@@ -13,7 +13,7 @@ classdef GUI_start < handle
     methods (Access = public)
         function obj = GUI_start() %initial
         obj.createLayout();
-        obj.Comment.String = ['Welcome to SillyWalk Detection, do you want to know if your current gait is silly or not?'];
+        obj.Comment.String = ['Welcome to SillyWalk Detection, do you want to know if your current gait is considered silly?'];
         imshow("silly2.jpg",'Parent',obj.Axis);
         end
 

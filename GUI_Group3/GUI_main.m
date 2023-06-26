@@ -1,7 +1,7 @@
 %Group 3 Monty Matlab Wen Bing, Yueqiu Wang, Tianyuan Kong, Mingcong Li
 classdef GUI_main < handle
     properties (Access = public)
-       TimeVector
+        TimeVector
         DataMatrix
         fileName 
         Gui_fig
@@ -19,7 +19,8 @@ classdef GUI_main < handle
         windowedData
         YPred
         accuracy 
-    end
+    end 
+
 
 
     methods (Access = public)
@@ -35,9 +36,8 @@ classdef GUI_main < handle
                 obj.evaluate()
         end
 
-
         %GUI layout
-        function createLayout(obj)
+        function createLayout(obj,~,~)
                 % GUI figure initialisation
                 obj.Gui_fig = figure('Name', 'MontyMatlab_Group03','NumberTitle', 'off','toolbar', 'none','Menubar', 'none');
                 % 设置好hp0是用来进行整体缩放
@@ -80,11 +80,11 @@ classdef GUI_main < handle
                     'Units','normalized',...
                     'Position',[0.4 0.15 0.2 0.3],...
                     'Parent',obj.Gui_fig,'Visible','on');
+                
+                    
             end
 
 
-
-            
             function importData(obj,~,~)
             obj.fileName = uigetfile('.mat');
             obj.matFileContent = load(obj.fileName);
@@ -106,9 +106,8 @@ classdef GUI_main < handle
             end
 
 
-
  
-           % function of extracting data
+          % function of extracting data
  function extractData(obj,~,~)
 
 % matFileContent: contents of a MAT file as obtained by matFileContent=load(filename)
@@ -159,6 +158,7 @@ end
 end
 
 
+
 %import classifyWalk
 function  classifyWalk(obj,~,~)
 % This is a trivial example for a classifier. It classifies any input as a
@@ -177,6 +177,7 @@ end
 
 
 
+% evaluate
 function evaluate(obj,~,~)
 % compute the accuracy of the model
 iscorrect = obj.YPred == obj.labels;
@@ -192,14 +193,13 @@ imshow("normal.jpg",'Parent',obj.sillynormal);
 obj.textresult.String ='Congratulations! Based on our experimental results, your gait is considered normal. Please continue to maintain it!'
 obj.textresult2.String="The accuracy is: "+num2str(obj.accuracy) + "%! The Time of classification is: " +num2str(obj.classification_runtime) + "s";
 end
+
+
 end
 
-function secondData(obj,~,~)
+    function secondData(obj,~,~)
             clear
             GUI_main();
     end
-
-
-
-    end
 end
+    end
