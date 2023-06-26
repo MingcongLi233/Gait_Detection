@@ -28,5 +28,34 @@ classdef GUI_start < handle
         function importmyData(obj, ~, ~)
             GUI_main();
         end
+
+        
+                 function gifPlayerGUI(obj, GIFname)
+            info = imfinfo(GIFname, 'GIF');
+            delay = ( info(1).DelayTime ) / 20;
+            [img,map] = imread(GIFname, 'gif', 'frames','all');
+            [imgH,imgW,~,numFrames] = size(img);
+
+            %Prepare GUI, and show first frame
+            hFig = figure();
+            movegui(hFig,'center')
+            hAx = axes('Parent',hFig, ...
+            'Units','pixels', 'Position',[1 1 imgW imgH]);
+            hImg = imshow(img(:,:,:,1), map, 'Parent',hAx);
+            
+
+            %pause(delay)
+            %truesize(hFig)
+            %Loop over frames continuously
+            counter = 1;
+            while ishandle(hImg)
+                %Increment counter circularly
+                counter = rem(counter, numFrames) + 1;
+                set(hImg, 'CData',img(:,:,:,counter))
+                %Pause for the specified delay
+                pause(delay)
+            end
+ 
+        end
     end
 end
