@@ -1,0 +1,62 @@
+\documentclass{article}
+\twocolumn
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Title}
+\author{author}
+
+\begin{document}
+\maketitle
+
+%\begin{abstract}
+
+%\end{abstract}
+
+\section{Introduction}\label{section1}
+This report introduces the development of a classification application, which is used to specify "normal walk" and "silly walk" only using data collected by smartphone. Two different algorithms are used to train the classification model, namely the "k-nearest neighbors algorithm" (k-NN) and the "long short-term memory algorithm" (LSTM). After some experiments and comparison of the results, only one algorithm is remained to interface with a graphical user interface (GUI).\\
+The remainder of this report is structured as follows: Section \ref{section2} introduces the methodology of the application in details. Section \ref{section3} contains the results and comparison from all experiments. Finally, a discuss and a brief conclusion will be given in Section \ref{section4}.
+\section{Methodology}\label{section2}
+
+\subsection{Data Collection}\label{section2.1}
+Data collection is performed on an iPhone 8 with the MATLAB Mobile App. Only acceleration data in directions X, Y and Z is collected and used to train the classification model. Because of the limitation of our dressing, we took the smartphone on the right side of our body, behind the waist, to simulate the situation that the smartphone was in our right back pocket with Y axis turned towards the ground.
+We collected 3 runs of our group members walking normally and 11 runs performing Silly Walks. The data was sampled in 50 Hz.
+
+
+\subsection{Data Preprocessing}\label{section2.2}
+Step 1: remove the pre/post walk data.\\
+Step 2: save the data in MAT-Files and rename the file.
+
+
+\subsection{Data Extraction}\label{section2.3}
+This function is written in the MATLAB script “dataExtraction.m”. Each sample in a MAT-File is divided into many small parts of data by shifting a window of $3.4$ Sec.with $50\%$ overlap. After using this function, plenty of training data with size $3\times170$ will be produced.
+
+\subsection{Training Algorithms}\label{section2.4}
+\subsubsection{K-NN}
+>>>>>>>
+\subsubsection{LSTM}
+>>>>>>>
+\subsection{Classify and Evaluation}\label{section2.5}
+The files “classifyWalk.m” and “evaluate.m” are used to test and evaluate the model, respectively. 
+After obtaining the predictions from “classfyWalk.m”, we compare the predicted labels with the corrected labels and calculate the accuracy of the models in “evaluate.m”. A more intuitional confusion chart will be produced when the evaluation process is finished. 
+
+\subsection{GUI}\label{section2.6}
+>>>>>>>
+\section{Experiments and Results}\label{section3}
+>>>>>>>
+\section{Discussion and Conclusion}\label{section4}
+>>>>>>>>
+\bibliographystyle{alpha}
+\bibliography{sample}
+
+\end{document}
