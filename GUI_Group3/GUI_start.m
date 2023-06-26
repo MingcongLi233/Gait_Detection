@@ -20,7 +20,7 @@ classdef GUI_start < handle
 
 
         function createLayout(obj,~,~)
-            obj.Gui_fig = figure('Name', 'MontyMatlab_Group03','NumberTitle', 'off','toolbar', 'none','Menubar', 'none');
+            obj.Gui_fig = figure('Name', 'MontyMatlab_Group03','NumberTitle', 'off','toolbar', 'none','Menubar', 'none'，'Units','normalized');
             obj.hp0 = uipanel('Units','normalized','Position', [0.05 0.05 0.9 0.9], 'Title','SillyWalk Detection', 'Parent', obj.Gui_fig,'Visible','on');%总的panel面板
             obj.Axis = uiaxes('Units', 'normalized',...
                     'Position', [0.05 0.05 0.7 0.9],...
