@@ -1,4 +1,5 @@
 %% Prepaer the training data
+addpath(pwd)
 % Specify the folder path and file extension
 folderPath = 'TrainingData/';
 fileExtension = '*.mat';

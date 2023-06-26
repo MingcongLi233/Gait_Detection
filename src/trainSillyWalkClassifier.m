@@ -14,7 +14,7 @@ function model = trainSillyWalkClassifier(XTrain, YTrain)
         classificationLayer];
 
     % Set training options
-    maxEpochs = 20;
+    maxEpochs = 18;
     miniBatchSize = 85;
     options = trainingOptions('adam', ...
     'ExecutionEnvironment','cpu', ...
