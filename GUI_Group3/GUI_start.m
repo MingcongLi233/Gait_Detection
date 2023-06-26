@@ -8,6 +8,7 @@ classdef GUI_start < handle
         textmsg
         ImportButton
         fileName
+        GIFButton
     end
 
     methods (Access = public)
@@ -23,13 +24,19 @@ classdef GUI_start < handle
             obj.Axis = uiaxes('Units', 'normalized', 'Position', [0.05 0.05 0.7 0.9], 'Parent', obj.hp0, 'Visible', 'on');
             obj.Comment = uicontrol('Style', 'text', 'String', obj.textmsg, 'FontWeight', 'bold', 'FontSize', 12, 'Units', 'normalized', 'Position', [0.75 0.4 0.24 0.5], 'Parent', obj.hp0, 'Visible', 'on');
             obj.ImportButton = uicontrol('Style', 'pushbutton', 'String', 'Import my gait!!', 'Units', 'normalized', 'Position', [0.75 0.2 0.24 0.2], 'Parent', obj.hp0, 'Callback', @obj.importmyData);
+             obj.GIFButton = uicontrol('Style', 'pushbutton','String', 'I want to learn silly walk!!', 'Units', 'normalized','Position', [0.7 0.2 0.25 0.2],'parent', obj.hp0, 'Callback',@obj.start_gifPlayerGUI);
         end
 
         function importmyData(obj, ~, ~)
             GUI_main();
         end
 
-        
+        function start_gifPlayerGUI(obj,~,~)
+            obj.gifPlayerGUI('SillyShow.GIF')
+        end
+
+
+
                  function gifPlayerGUI(obj, GIFname)
             info = imfinfo(GIFname, 'GIF');
             delay = ( info(1).DelayTime ) / 20;
