@@ -10,6 +10,7 @@ classdef GUI_start < handle
         fileName
         GIFButton
         Caption_title
+        tumlogo
     end 
 
     methods (Access = public)
@@ -17,6 +18,7 @@ classdef GUI_start < handle
         obj.createLayout();
         obj.Comment.String = ['Welcome to SillyWalk Detection, do you want to know if your current gait is considered silly?'];
          imshow("silly2.jpg", 'Parent', obj.Axis);
+         imshow("tumlogo.png", 'Parent', obj.tumlogo);
         end
 
 
@@ -45,9 +47,13 @@ classdef GUI_start < handle
                     'FontWeight','bold',...
                     'FontSize',18,...
                     'Units','normalized',...
-                    'Position',[0.05 0.90 0.9 0.1],...
+                    'Position',[0.05 0.90 0.815 0.1],...
                     'Parent',obj.Gui_fig, ...
                     'Visible','on'); 
+
+            obj.tumlogo = uiaxes('Units', 'normalized',...
+                    'Position', [0.855 0.9 0.1 0.12],...
+                    'Parent', obj.Gui_fig,'Visible','on');
         end
 
         function importmyData(obj,~,~)
@@ -89,6 +95,3 @@ classdef GUI_start < handle
             end
  
         end
-
-end
-    end
