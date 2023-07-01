@@ -61,6 +61,4 @@ Model = trainSillyWalkClassifier(XTrain, YTrain);
 %% Evaluate the model on test data
 model = load('Model.mat').model;
 YPred = classifyWalk(model, XTest);
-num = (YPred == YTest);
-correct = sum(sum(num~=0));
-Accuracy = correct/size(YTest,1);
+accuracy = evaluate(YPred,YTest);
