@@ -1,3 +1,6 @@
+clear all
+close all
+clc
 %% Prepaer the training data
 addpath(pwd)
 % Specify the folder path and file extension
@@ -54,7 +57,10 @@ for i = 1:numel(fileList)
     YTest = [YTest; YTest_i];
 end
 %% Train the model
-model = trainSillyWalkClassifier(XTrain, YTrain);
+Model = trainSillyWalkClassifier(XTrain, YTrain);
 %% Evaluate the model on test data
+model = load('Model.mat').model;
 YPred = classifyWalk(model, XTest);
-accuracy = evaluate(YPred,YTest)
+num = (YPred == YTest);
+correct = sum(sum(num~=0));
+Accuracy = correct/size(YTest,1);

@@ -1,7 +1,7 @@
 function model = trainSillyWalkClassifier(XTrain, YTrain)   
     % Define the network architecture
     inputDimension = 3;
-    hiddenUnits = 100;
+    hiddenUnits = 200;
     numClasses = 2;
 
     layers = [
@@ -15,7 +15,7 @@ function model = trainSillyWalkClassifier(XTrain, YTrain)
 
     % Set training options
     maxEpochs = 20;
-    miniBatchSize = 85;
+    miniBatchSize = 32;
     options = trainingOptions('adam', ...
     'ExecutionEnvironment','cpu', ...
     'GradientThreshold',1, ...
