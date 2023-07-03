@@ -11,6 +11,9 @@ classdef GUI_start < handle
         GIFButton
         Caption_title
         tumlogo
+        playspeedslide
+        playspeed
+        speedtext
     end 
 
     methods (Access = public)
@@ -24,6 +27,7 @@ classdef GUI_start < handle
 
 
         function createLayout(obj,~,~)
+            %clear
             obj.Gui_fig = figure('Name', 'MontyMatlab_Group03','NumberTitle', 'off','toolbar', 'none','Menubar', 'none','Units','normalized');
             obj.hp0 = uipanel('Units','normalized','Position', [0.05 0.05 0.9 0.85], 'Title','', 'Parent', obj.Gui_fig,'Visible','on');%总的panel面板
             obj.Axis = uiaxes('Units', 'normalized',...
@@ -54,6 +58,31 @@ classdef GUI_start < handle
             obj.tumlogo = uiaxes('Units', 'normalized',...
                     'Position', [0.855 0.9 0.1 0.12],...
                     'Parent', obj.Gui_fig,'Visible','on');
+             
+            obj.playspeedslide = uicontrol('Style','slider', ...
+                'min',0.4, ...
+                'max',1, ...
+                'SliderStep',[0.1 0.1], ...
+                'Value',0.4, ...
+                'Units','normalized',...
+                'String','Playspeed',...
+                'Parent',obj.hp0,...
+                'Position',[0.7,0.05,0.25,0.15],...
+                'Callback',@obj.speedupadjust)
+
+            obj.speedtext=uicontrol('Style','text',...
+                    'String','Slide right to speed down!',...
+                    'FontWeight','bold',...
+                    'FontSize',10,...
+                    'Units','normalized',...
+                    'Position',[0.7 0.05 0.25 0.1],...
+                    'Parent',obj.hp0, ...
+                    'Visible','on'); 
+        end
+
+        function speedupadjust(obj,~,~)
+          playspeed_1 = get(obj.playspeedslide,'Value');
+          obj.playspeed = 1/2*playspeed_1;
         end
 
         function importmyData(obj,~,~)
@@ -68,9 +97,14 @@ classdef GUI_start < handle
 
 
 
+
+
+
          function gifPlayerGUI(obj, GIFname)
             info = imfinfo(GIFname, 'GIF');
-            delay = ( info(1).DelayTime ) / 20;
+            %internal = 20 .* obj.playspeed;
+            delay = ( info(1).DelayTime * obj.playspeed ) / 10;
+            %delay = ( info(1).DelayTime) / 60;
             [img,map] = imread(GIFname, 'gif', 'frames','all');
             [imgH,imgW,~,numFrames] = size(img);
 
@@ -95,3 +129,6 @@ classdef GUI_start < handle
             end
  
         end
+
+end
+    end
