@@ -99,7 +99,7 @@ classdef GUI_start < handle
 
 
 
-
+        % the source of this gif code https://stackoverflow.com/questions/10863014/matlab-display-animated-gif-in-gui
          function gifPlayerGUI(obj, GIFname)
             info = imfinfo(GIFname, 'GIF');
             %internal = 20 .* obj.playspeed;
