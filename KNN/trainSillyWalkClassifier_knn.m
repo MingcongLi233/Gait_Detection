@@ -4,7 +4,7 @@ function model = trainSillyWalkClassifier_knn(XTrain, YTrain)
 features = extractFeatures(XTrain);
 
 % Step 2: train the model using knn algorithm
-model = fitcknn(features,YTrain,'NumNeighbors',100); % k = 100
+model = fitcknn(features,YTrain,'NumNeighbors',10); % k = 10
 
 save(fullfile(fileparts(mfilename('fullpath')), 'Model.mat'), 'model'); % do not change this line
 % 
