@@ -11,9 +11,6 @@ classdef GUI_start < handle
         GIFButton
         Caption_title
         tumlogo
-        playspeedslide
-        playspeed
-        speedtext
     end 
 
     methods (Access = public)
@@ -43,8 +40,8 @@ classdef GUI_start < handle
                     'Visible','on');
              
             
-            obj.ImportButton = uicontrol('Style', 'pushbutton','String', 'Import my gait!!', 'Units', 'normalized','Position', [0.7 0.4 0.25 0.2],'parent', obj.hp0, 'Callback',@obj.importmyData);
-            obj.GIFButton = uicontrol('Style', 'pushbutton','String', 'I want to learn silly walk!!', 'Units', 'normalized','Position', [0.7 0.2 0.25 0.2],'parent', obj.hp0, 'Callback',@obj.start_gifPlayerGUI);
+            obj.ImportButton = uicontrol('Style', 'pushbutton','String', 'Import my gait!!', 'Units', 'normalized','Position', [0.68 0.4 0.3 0.2],'parent', obj.hp0, 'Callback',@obj.importmyData);
+            obj.GIFButton = uicontrol('Style', 'pushbutton','String', 'How does Silly Walk look like?', 'Units', 'normalized','Position', [0.68 0.2 0.3 0.2],'parent', obj.hp0, 'Callback',@obj.start_gifPlayerGUI);
             
             obj.Caption_title = uicontrol('Style','text',...
                     'String','Welcome to SillyWalk Detection Lab!',...
@@ -58,31 +55,6 @@ classdef GUI_start < handle
             obj.tumlogo = uiaxes('Units', 'normalized',...
                     'Position', [0.855 0.9 0.1 0.12],...
                     'Parent', obj.Gui_fig,'Visible','on');
-             
-            obj.playspeedslide = uicontrol('Style','slider', ...
-                'min',0.4, ...
-                'max',1, ...
-                'SliderStep',[0.1 0.1], ...
-                'Value',0.4, ...
-                'Units','normalized',...
-                'String','Playspeed',...
-                'Parent',obj.hp0,...
-                'Position',[0.7,0.05,0.25,0.15],...
-                'Callback',@obj.speedupadjust)
-
-            obj.speedtext=uicontrol('Style','text',...
-                    'String','Slide right to speed down!',...
-                    'FontWeight','bold',...
-                    'FontSize',10,...
-                    'Units','normalized',...
-                    'Position',[0.7 0.05 0.25 0.1],...
-                    'Parent',obj.hp0, ...
-                    'Visible','on'); 
-        end
-
-        function speedupadjust(obj,~,~)
-          playspeed_1 = get(obj.playspeedslide,'Value');
-          obj.playspeed = 1/2*playspeed_1;
         end
 
         function importmyData(obj,~,~)
@@ -99,11 +71,11 @@ classdef GUI_start < handle
 
 
 
-        % the source of this gif code https://stackoverflow.com/questions/10863014/matlab-display-animated-gif-in-gui
+
          function gifPlayerGUI(obj, GIFname)
             info = imfinfo(GIFname, 'GIF');
             %internal = 20 .* obj.playspeed;
-            delay = ( info(1).DelayTime * obj.playspeed ) / 10;
+            delay = ( info(1).DelayTime ) / 20;
             %delay = ( info(1).DelayTime) / 60;
             [img,map] = imread(GIFname, 'gif', 'frames','all');
             [imgH,imgW,~,numFrames] = size(img);
