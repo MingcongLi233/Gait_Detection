@@ -16,7 +16,7 @@ classdef GUI_start < handle
     methods (Access = public)
         function obj = GUI_start() %initial
         obj.createLayout();
-        obj.Comment.String = ['Welcome to SillyWalk Detection, do you want to know if your current gait is considered silly?'];
+        obj.Comment.String = ['Welcome to Silly Walk Detection Lab, do you want to know if your current gait is considered silly?'];
          imshow("silly2.jpg", 'Parent', obj.Axis);
          imshow("tumlogo.png", 'Parent', obj.tumlogo);
         end
@@ -40,11 +40,11 @@ classdef GUI_start < handle
                     'Visible','on');
              
             
-            obj.ImportButton = uicontrol('Style', 'pushbutton','String', 'Import my gait!!', 'Units', 'normalized','Position', [0.68 0.4 0.3 0.2],'parent', obj.hp0, 'Callback',@obj.importmyData);
+            obj.ImportButton = uicontrol('Style', 'pushbutton','String', 'Sure! Import my gait!!', 'Units', 'normalized','Position', [0.68 0.4 0.3 0.2],'parent', obj.hp0, 'Callback',@obj.importmyData);
             obj.GIFButton = uicontrol('Style', 'pushbutton','String', 'How does Silly Walk look like?', 'Units', 'normalized','Position', [0.68 0.2 0.3 0.2],'parent', obj.hp0, 'Callback',@obj.start_gifPlayerGUI);
             
             obj.Caption_title = uicontrol('Style','text',...
-                    'String','Welcome to SillyWalk Detection Lab!',...
+                    'String','Welcome to Silly Walk Detection Lab!',...
                     'FontWeight','bold',...
                     'FontSize',18,...
                     'Units','normalized',...
@@ -55,7 +55,7 @@ classdef GUI_start < handle
             obj.tumlogo = uiaxes('Units', 'normalized',...
                     'Position', [0.855 0.9 0.1 0.12],...
                     'Parent', obj.Gui_fig,'Visible','on');
-        end
+        % end
 
         function importmyData(obj,~,~)
               GUI_main();
