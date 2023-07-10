@@ -1,7 +1,9 @@
 clear all
 close all
 clc
-%% Prepaer the training data
+% This is the main function to produce the model and evaluate it using some testing data
+
+%% Prepare the training data
 addpath(pwd)
 % Specify the folder path and file extension
 folderPath = 'TrainingData/';
@@ -29,7 +31,7 @@ for i = 1:numel(fileList)
     XTrain = [XTrain; XTrain_i];
     YTrain = [YTrain; YTrain_i];
 end
-%% Prepaer the testing data
+%% Prepare the testing data
 % Specify the folder path and file extension
 folderPath = 'TestData/';
 fileExtension = '*.mat';
