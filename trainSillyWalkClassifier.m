@@ -1,4 +1,13 @@
 function model = trainSillyWalkClassifier(XTrain, YTrain)   
+% This function is used to train the LSTM model 
+% 
+% INPUTS:
+% -XTrain: training data
+% -YTrain: true label of the corresponding training data
+%
+% OUTPUT:
+% -model: trained LSTM model 
+
     % Define the network architecture
     inputDimension = 3;
     hiddenUnits = 110;
