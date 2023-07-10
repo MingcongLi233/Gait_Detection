@@ -1,4 +1,11 @@
 function features = extractFeatures(X)
+% This function is used to extract features from data, which will bw used in the training process
+%
+% INPUTS:
+% - X: data, from which we want to extract features 
+%
+% OUTPUT:
+% - features: extracted features
 
 numData = size(X,1);
  for i = 1:numData
