@@ -1,4 +1,4 @@
-% Group 3 Monty Matlab Wen Bing, Yueqiu Wang, Tianyuan Kong, Mingcong Li
+%Group 3 Monty Matlab Wen Bing, Yueqiu Wang, Tianyuan Kong, Mingcong Li
 classdef GUI_start < handle
     properties (Access = public)
         Gui_fig
@@ -55,6 +55,7 @@ classdef GUI_start < handle
             obj.tumlogo = uiaxes('Units', 'normalized',...
                     'Position', [0.855 0.9 0.1 0.12],...
                     'Parent', obj.Gui_fig,'Visible','on');
+
         % end
 
         function importmyData(obj,~,~)
