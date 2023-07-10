@@ -56,7 +56,7 @@ classdef GUI_start < handle
                     'Position', [0.855 0.9 0.1 0.12],...
                     'Parent', obj.Gui_fig,'Visible','on');
 
-        % end
+        end
 
         function importmyData(obj,~,~)
               GUI_main();
@@ -102,6 +102,5 @@ classdef GUI_start < handle
             end
  
         end
-
-end
+    end
     end
