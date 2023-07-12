@@ -18,8 +18,9 @@ To run the GUI and observe the classification results, execute the GUI_start.m s
 To use this project, follow the steps below:
 
 Clone the repository to your local machine:
-shell
-git clone https://github.com/username/repo.git
+```
+git clone https://gitlab.lrz.de/ldv/teaching/monty-matlab/montymatlab2023/group-3.git
+```
 Ensure you have MATLAB installed on your computer.
 
 Open MATLAB and navigate to the project directory.
