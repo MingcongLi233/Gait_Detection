@@ -45,8 +45,8 @@ To choose another data file and re-run the classification, click on the "Choose 
 ## Dependencies
 The project has the following dependencies:
 
-MATLAB (version XYZ or later)
-Deep Learning Toolbox (for LSTM model training)
-Statistics and Machine Learning Toolbox (for KNN model training)
-Image Processing Toolbox (for displaying GIF animation)
-Other MATLAB built-in functions and libraries
+- MATLAB (version XYZ or later)
+- Deep Learning Toolbox (for LSTM model training)
+- Statistics and Machine Learning Toolbox (for KNN model training)
+- Image Processing Toolbox (for displaying GIF animation)
+- Other MATLAB built-in functions and libraries
