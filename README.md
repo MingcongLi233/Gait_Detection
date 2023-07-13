@@ -25,6 +25,8 @@ Ensure you have MATLAB installed on your computer.
 
 Open MATLAB and navigate to the project directory.
 
+Add the project folder and its subfolders to the MATLAB path.
+
 Run the GUI_start.m script to launch the GUI.
 
 ## Usage
