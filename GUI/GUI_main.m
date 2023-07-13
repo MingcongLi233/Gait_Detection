@@ -100,7 +100,7 @@ classdef GUI_main < handle
                     'FontWeight','bold',...
                     'FontSize',10,...
                     'Units','normalized',...
-                    'Position',[0.5 0.18 0.2 0.29],...
+                    'Position',[0.5 0.15 0.2 0.29],...
                     'Parent',obj.Gui_fig,'Visible','on');
 
                     % display normal or silly result
@@ -203,14 +203,14 @@ classdef GUI_main < handle
                     obj.accuracy = sum(iscorrect)/numel(iscorrect)*100;
                     if mode(obj.YPred) == 'Silly walk'
                     imshow("silly2.jpg",'Parent',obj.sillynormal);
-                    obj.textresult.String = 'Your gait is considered as silly, and we recommend reducing the amplitude of body sway.'
+                    obj.textresult.String = '                           Your gait is considered as silly, and we recommend reducing the amplitude of body sway.'
                     obj.fontenlargement.String = '  Result:   Silly Walk';
-                    obj.textresult2.String="Classification Time: " +num2str(obj.classification_runtime) + "s";
+                    obj.textresult2.String="                Classification Time: " +num2str(obj.classification_runtime) + "s";
                     else
                     imshow("normal.jpg",'Parent',obj.sillynormal);
-                    obj.textresult.String ='Congratulations! Your gait is considered normal. Please continue to maintain it!'
+                    obj.textresult.String ='                           Congratulations! Your gait is considered normal. Please continue to maintain it!'
                     obj.fontenlargement.String = 'Result: Normal Walk';
-                    obj.textresult2.String="Classification Time: " +num2str(obj.classification_runtime) + "s";
+                    obj.textresult2.String="                Classification Time: " +num2str(obj.classification_runtime) + "s";
                     end
             end
 
