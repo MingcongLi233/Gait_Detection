@@ -77,7 +77,7 @@ classdef GUI_start < handle
 
        % Silly Walk Animation
         function start_gifPlayerGUI(obj,~,~)
-            obj.gifPlayerGUI('SillyShow.GIF')
+            obj.gifPlayerGUI('SillyShow.gif')
         end
 
        % Setup of silly walk animation
