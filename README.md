@@ -52,3 +52,6 @@ The project has the following dependencies:
 - Statistics and Machine Learning Toolbox (for k-NN model training)
 - Image Processing Toolbox (for displaying GIF animation)
 - Other MATLAB built-in functions and libraries
+
+## Video
+The link to our presentation video: https://youtu.be/IZinj8PDOr4
