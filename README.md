@@ -27,9 +27,9 @@ Clone the repository to your local machine:
 ```
 git clone https://gitlab.lrz.de/ldv/teaching/monty-matlab/montymatlab2023/group-3.git
 ```
-Ensure you have MATLAB installed on your computer.
+Ensure you have MATLAB installed on your computer. If not, you can also use MATLAB Online.
 
-Open MATLAB and navigate to the project directory.
+Open MATLAB (or MATLAB Online) and navigate to the project directory.
 
 Add the project folder and its subfolders to the MATLAB path.
 
@@ -38,17 +38,17 @@ Run the GUI_start.m script to launch the GUI.
 ## Usage
 Launch the GUI by running the GUI_start.m script.
 
-The GUI will open, displaying the welcome message and options for importing gait data or viewing a demonstration of silly walk animation.
+After launching, a welcome message and options for importing gait data or viewing a demo of Silly Walk animation will be displayed.
 
-To import gait data, click on the "Sure! Import my gait!!" button. Select the appropriate data file when prompted.
+To import gait data, click on the button "Sure! Import my gait!". Select the appropriate data file when prompted.
 
-The GUI will display the acceleration data plot and classify the gait pattern as "Silly Walk" or "Normal Walk" based on the selected algorithm.
+The GUI will plot the acceleration data and classify the gait pattern as "Silly Walk" or "Normal Walk" based on the model trained by the LSTM algorithm.
 
 The classification result, along with the classification runtime, will be shown in the GUI.
 
-To view a demonstration of silly walk animation, click on the "How does Silly Walk look like?" button. The animation will play using a GIF file.
+To view a demo of Silly Walk animation, click on the button "How does Silly Walk look like?". The animation will be displayed as a GIF.
 
-To choose another data file and re-run the classification, click on the "Choose another data" button.
+To choose another data file and re-run the classification, click on the  button "Choose another data".
 
 ## Dependencies
 The project has the following dependencies:
@@ -60,4 +60,4 @@ The project has the following dependencies:
 - Other MATLAB built-in functions and libraries
 
 ## Video
-The link to our presentation video: https://youtu.be/IZinj8PDOr4
+Link to our presentation video: https://youtu.be/IZinj8PDOr4
