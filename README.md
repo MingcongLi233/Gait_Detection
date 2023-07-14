@@ -9,10 +9,16 @@ This project aims to classify gait patterns as either "Silly Walk" or "Normal Wa
 The project consists of the following main components:
 
 Data Processing: The input gait data is preprocessed and windowed to extract features.
+
 Model Training: LSTM and k-NN models are trained using the extracted features.
+
 Classification: The trained models are used to classify gait patterns as "Silly Walk" or "Normal Walk".
+
 GUI Development: A graphical user interface is created to provide a user-friendly display of the classification results.
-To run the GUI and observe the classification results, execute the GUI_start.m script. Note that only the LSTM model is used to develop the GUI because of its higher accuracy.
+Note that only the LSTM model is used to develop the GUI because of its higher accuracy.
+
+To run the GUI and observe the classification results, execute the GUI_start.m script. 
+
 
 ## Installation
 To use this project, follow the steps below:
