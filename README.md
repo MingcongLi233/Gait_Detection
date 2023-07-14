@@ -8,9 +8,9 @@ This project aims to classify gait patterns as either "Silly Walk" or "Normal Wa
 
 The project consists of the following main components:
 
-Data Processing: The input gait data is preprocessed and windowed to extract features.
+Data Extraction: The input gait data is preprocessed and windowed.
 
-Model Training: LSTM and k-NN models are trained using the extracted features.
+Model Training: LSTM and k-NN models are trained using the preprocessed data.
 
 Classification: The trained models are used to classify gait patterns as "Silly Walk" or "Normal Walk".
 
