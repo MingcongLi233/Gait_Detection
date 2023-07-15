@@ -1,9 +1,15 @@
 function [windowedData, labels] = extractData(matFileContent, filename, samplingRateHZ, windowWidthSeconds)
+% This functiuon is used to preprocess the collected data 
+% INPUTS:
+% - matFileContent: contents of a MAT file as obtained by matFileContent=load(filename)
+% - filename: the name of the file including extension (e.g. "Group1_Walk7_N.mat", without path)
+% - samplingRateHz: sampling rate in Hz
+% - windowWidthSeconds: window width in seconds
+%
+% OUTPUTS:
+% - windowedData: Smaller parts of data by shifting a window of 3.4 seconds with a 50% overlap from one sample
+% - labels: corresponding true labels of the windowedData
 
-% matFileContent: contents of a MAT file as obtained by matFileContent=load(filename)
-% filename: the name of the file including extension (e.g. "Group1_Walk7_N.mat", without path)
-% samplingRateHz: sampling rate in Hz
-% windowWidthSeconds: window width in seconds
 %***********************parameters***************************
 minimun_length = 50*3.4;
 addpath("TrainingData");

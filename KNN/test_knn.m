@@ -1,6 +1,8 @@
 clear all
 clc
 close all
+% This function is used to obtain the k-NN model and evaluate it using some test data
+
 %% Prepare the training data
 % Specify the folder path and file extension
 folderPath = 'TrainingData/';

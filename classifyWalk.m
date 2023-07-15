@@ -1,6 +1,13 @@
 function YPred = classifyWalk(model, XTest)
-% This is a trivial example for a classifier. It classifies any input as a
-% normal walk.
+% This function is used to classify the test data using the trained LSTM model.
+%
+% INPUTS:
+% - model: trained LSTM model
+% - XTest: test data
+%
+% OUTPUT:
+% - YPred: predicted label from test data.
+
     YPred = categorical(repmat({'Normal walk'}, size(XTest)));
     predictions = predict(model, XTest);
     for i=1:size(predictions,1)
